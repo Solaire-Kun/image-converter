@@ -32,9 +32,12 @@ const createWindow = () => {
 
 // create window and check for updates
 autoUpdater.setFeedURL({
+    protocol: 'https',
     provider: 'github',
     owner: 'Solaire-Kun',
-    repo: 'image-converter'
+    repo: 'image-converter',
+    releaseType: 'release',
+    token: process.env.GH_TOKEN
 });
 
 app.whenReady().then(() => {

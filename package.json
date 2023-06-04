@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder build --win -p never",
-    "deploy": "electron-builder build --win -p always"
+    "build": "electron-builder -w -p never",
+    "deploy": "electron-builder -w -p always"
   },
   "build": {
     "appId": "com.image_converter",
@@ -14,15 +14,8 @@
     "directories": {
       "output": "dist"
     },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "Solaire_Kun",
-        "repo": "image-converter",
-        "releaseType": "release"
-      }
-    ],
     "win": {
+      "publish": "github",
       "target": {
         "target": "nsis",
         "arch": [

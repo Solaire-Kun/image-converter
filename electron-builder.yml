@@ -1,6 +1,0 @@
-appId: com.image_converter
-publish:
-  provider: github
-  owner: Solaire-Kun
-  repo: image-converter
-  token: ${GH_TOKEN}
