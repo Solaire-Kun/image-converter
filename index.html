@@ -14,30 +14,13 @@
 <body class="bg-dark text-white">
     <div class="container">
 
-        <!-- UPDATE AVAILABLE -->
-        <div id="update-notification" class="mt-3 alert alert-info d-none" role="alert">
-            <h3>An update is available!</h3>
-            <div class="row row-cols-2">
-                <div class="row">
-                    <div class="col-4">
-                        <button id="download" class="btn btn-primary">Download</button>
-                        <button id="restart" class="btn btn-primary d-none">Restart</button>
-                    </div>
-                    <div class="col-4">
-                        <button id="ignore" class="btn btn-secondary">Ignore</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
         <h1>Image Converter</h1>
         <div class="mt-3 mb-3 card bg-black text-white shadow p-2 w-75">
             <label for="formFileMultiple" class="form-label">Insert your images you want to be converted.</label>
             <input class="form-control bg-dark border-black text-white" type="file" accept="image/*"
                 id="formFileMultiple" multiple>
             <p class="mt-4">Choose your format you want to convert your images.</p>
-            <select id="img-type" class="form-select bg-dark text-white">
+            <select id="img-type" class="form-select bg-dark border-black text-white">
                 <option value="png">PNG</option>
                 <option value="webp">WEBP</option>
                 <option value="jpeg">JPEG</option>

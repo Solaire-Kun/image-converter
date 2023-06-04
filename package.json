@@ -1,20 +1,22 @@
 {
   "name": "image_converter",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple image converter software built with Electron.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder build --win --publish never",
-    "deploy": "electron-builder build --win --publish always"
+    "build": "electron-builder",
+    "deploy": "electron-builder build --win --p always"
   },
   "build": {
-    "appId": "image_converter.com",
+    "appId": "com.image_converter.com",
+    "productName": "Image Converter",
     "publish": [
       {
         "provider": "github",
         "owner": "Solaire_Kun",
-        "repo": "image-converter"
+        "repo": "image-converter",
+        "releaseType": "release"
       }
     ],
     "directories": {
@@ -23,10 +25,6 @@
     "win": {
       "target": "nsis"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Solaire-Kun/image-converter.git"
   },
   "keywords": [],
   "author": "Solaire",

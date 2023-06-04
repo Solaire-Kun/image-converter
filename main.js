@@ -1,12 +1,15 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const sharp = require('sharp');
-const fs = require('fs-extra');
+const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 const platform = process.platform;
 
 let mainWindow
+
+autoUpdater.autoDownload = false;
+autoUpdater.autoInstallOnAppQuit = true;
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({
@@ -21,37 +24,30 @@ const createWindow = () => {
             nodeIntegration: true,
             contextIsolation: false,
         }
-    })
+    });
 
     mainWindow.loadFile('index.html');
-}
+};
 
 // create window and check for updates
+autoUpdater.setFeedURL({
+    provider: 'github',
+    owner: 'Solaire-Kun',
+    repo: 'image-converter'
+});
+
 app.whenReady().then(() => {
     createWindow();
     autoUpdater.checkForUpdatesAndNotify();
-})
+});
 
 app.on('window-all-closed', () => {
     app.quit();
-})
-
-// restart when updates
-ipcMain.on('restart_app', () => {
-    autoUpdater.quitAndInstall();
 });
 
 // get app version
 ipcMain.on('app_version', (e) => {
     e.sender.send('app_version', { version: app.getVersion() });
-});
-
-// handle update if is available
-autoUpdater.on('update-available', () => {
-    mainWindow.webContents.send('update_available');
-});
-autoUpdater.on('update-downloaded', () => {
-    mainWindow.webContents.send('update_downloaded');
 });
 
 // handle images and convert them
@@ -60,7 +56,9 @@ ipcMain.on('image:sent', (e, data) => {
 
     // make sure the folder exists, if not create it
     const outputFolderPath = path.resolve('./converted-images/');
-    fs.ensureDirSync(outputFolderPath);
+    if (!fs.existsSync(outputFolderPath)) {
+        fs.mkdirSync(outputFolderPath);
+    }
 
     // remove the old file format example remove .png and rename to the desired convertTo string
     const extensionIndex = name.lastIndexOf('.');
