@@ -1,0 +1,4 @@
+appId: image_converter.com
+publish:
+  provider: github
+  token: process.env.GH_TOKEN
