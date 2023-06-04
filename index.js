@@ -1,5 +1,4 @@
 const { ipcRenderer } = require('electron');
-require('dotenv').config();
 
 // display app version on title bar
 const version = document.getElementById('version');

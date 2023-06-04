@@ -1,4 +1,4 @@
-appId: com.image_converter.com
+appId: com.image_converter
 publish:
   provider: github
   owner: Solaire-Kun
