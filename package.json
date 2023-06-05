@@ -1,12 +1,13 @@
 {
   "name": "image_converter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple image converter software built with Electron.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder -w -p never",
-    "deploy": "electron-builder -w -p always"
+    "build": "electron-builder -w -p never ",
+    "deploy": "electron-builder -w -p always",
+    "cert": "electron-builder create-self-signed-cert -p Solaire_Kun"
   },
   "build": {
     "appId": "com.image_converter",
@@ -15,6 +16,7 @@
       "output": "dist"
     },
     "win": {
+      "certificateSubjectName": "Solaire_Kun",
       "publish": "github",
       "target": {
         "target": "nsis",
